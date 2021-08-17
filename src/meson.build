@@ -4,6 +4,7 @@ janitor_src = files(
   'cell.c',
   'cell.h',
   'cleanup.c',
+  'context.c',
 )
 
 arch = host_machine.cpu_family()
