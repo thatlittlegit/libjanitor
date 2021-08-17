@@ -4,6 +4,7 @@
  */
 #define _DEFAULT_SOURCE
 
+#include "../include/janitor.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>

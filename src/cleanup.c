@@ -2,6 +2,7 @@
  * Copyright 2021 thatlittlegit <personal@thatlittlegit.tk>
  * SPDX-License-Identifier: LGPL-3.0-or-later
  */
+#include "../include/janitor.h"
 #include "cell.h"
 #include <stdio.h>
 

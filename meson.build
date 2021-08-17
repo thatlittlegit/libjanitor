@@ -7,6 +7,7 @@ project('janitor', 'c',
 )
 
 subdir('src')
+subdir('include')
 
 executable('testexe', 'test.c',
   dependencies: janitor_dep,
