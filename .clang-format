@@ -1,0 +1,5 @@
+# -*- mode: yaml -*-
+# Copyright 2021 thatlittlegit <personal@thatlittlegit.tk>
+# SPDX-License-Identifier: CC0-1.0
+BasedOnStyle: GNU
+
