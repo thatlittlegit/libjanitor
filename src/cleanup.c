@@ -14,7 +14,10 @@ janitor_clean_post_c (void *sp)
   struct janitor_context *ctx = janitor_cell_get_context (cell);
   janitor_cell_free (cell);
 
-  printf ("hello\n");
+  void *ptr;
+  janitor_free_t *func;
+  while (janitor_context_iter (ctx, &ptr, &func))
+    func (ptr);
 
   return ret;
 }
