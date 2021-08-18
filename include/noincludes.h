@@ -45,6 +45,15 @@ JANITOR_FUNC void janitor_context_add (struct janitor_context *, void *,
  */
 JANITOR_FUNC unsigned janitor_context_iter (struct janitor_context *, void **,
                                             janitor_free_t **);
+
+/**
+ * Frees a given context. Note that it can't be in use within a janitor_clean;
+ * if it is, it will be a use-after-free.
+ *
+ * It's automatically freed during a janitor_clean.
+ */
+JANITOR_FUNC void janitor_context_free (struct janitor_context *);
+
 /**
  * Schedules the given context to be cleaned at the end of the function.
  */

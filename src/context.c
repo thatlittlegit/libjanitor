@@ -30,6 +30,7 @@ janitor_context_new (void)
 
   ctx->count = 0;
   ctx->items = NULL;
+
   return ctx;
 }
 
@@ -71,8 +72,15 @@ janitor_context_iter (struct janitor_context *ctx, void **ptr,
   struct janitor_item *items = reallocarray (ctx->items, ctx->count - 1,
                                              sizeof (struct janitor_item));
 
-  if (ctx->count > 1 && items != NULL)
+  if (ctx->count == 1 || items != NULL)
     ctx->items = items;
 
   return ctx->count--;
+}
+
+void
+janitor_context_free (struct janitor_context *ctx)
+{
+  free (ctx->items);
+  free (ctx);
 }

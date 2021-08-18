@@ -19,5 +19,6 @@ janitor_clean_post_c (void *sp)
   while (janitor_context_iter (ctx, &ptr, &func))
     func (ptr);
 
+  janitor_context_free (ctx);
   return ret;
 }
