@@ -22,7 +22,9 @@ janitor_clean:
 
 	/* return */
 	ret
+	.endfunc
 
+	.func janitor_clean_post
 janitor_clean_post:
 	/* save the stack pointer */
 	mov %rsp, %rdi
@@ -37,4 +39,3 @@ janitor_clean_post:
 	/* jump there */
 	pop %rax
 	jmp *%rdi
-	.endfunc
