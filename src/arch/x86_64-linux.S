@@ -9,22 +9,16 @@ janitor_clean:
 	/* (struct janitor_context *) */
 	endbr32
 
-	/* find the original return address location */
-	mov %rbp, %rcx
-	add $8, %rcx
-	push %rcx
-
 	/* allocate a holding cell */
 	mov %rdi, %rdx
-	mov (%rcx), %rsi
+	mov 8(%rbp), %rsi
 	mov %rbp, %rdi
 	add $0x10, %rdi /* why? */
 	call janitor_cell_new
 
 	/* replace the old return address */
 	lea janitor_clean_post(%rip), %rax
-	pop %rcx
-	mov %rax, (%rcx)
+	mov %rax, 8(%rbp)
 
 	/* return */
 	ret
