@@ -85,8 +85,8 @@ janitor_cell_free (struct janitor_cell *cell)
       g_cells[i] = g_cells[g_ncells - 1];
 
       struct janitor_cell **cells
-          = reallocarray (g_cells, g_ncells, sizeof (struct janitor_cell *));
-      if (cells != NULL)
+          = reallocarray (g_cells, --g_ncells, sizeof (struct janitor_cell *));
+      if (g_ncells == 0 || cells != NULL)
         g_cells = cells;
 
       break;
