@@ -45,9 +45,9 @@ janitor_context_add (struct janitor_context *ctx, void *ptr,
 
   assert (items != NULL);
 
+  ctx->items = items;
   ctx->items[ctx->count].ptr = ptr;
   ctx->items[ctx->count].free = free;
-  ctx->items = items;
   ctx->count += 1;
 }
 
