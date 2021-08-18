@@ -10,6 +10,12 @@
 
 typedef void (janitor_free_t) (void *);
 
+#if defined __GNUC__
+#define JANITOR_FUNC extern __attribute__ ((visibility ("default")))
+#else
+#define JANITOR_FUNC extern
+#endif
+
 /**
  * @struct janitor_context
  *
@@ -24,21 +30,22 @@ struct janitor_context;
  *
  * @returns the new allocator, or NULL on allocation failure
  */
-struct janitor_context *janitor_context_new (void);
+JANITOR_FUNC struct janitor_context *janitor_context_new (void);
 
 /**
  * Adds a function to the Janitor context. The function will be called with the
  * provided element.
  */
-void janitor_context_add (struct janitor_context *, void *, janitor_free_t *);
+JANITOR_FUNC void janitor_context_add (struct janitor_context *, void *,
+                                       janitor_free_t *);
 
 /**
  * Get the last thing to free in the Janitor context, removing it from the
  * context.
  */
-unsigned janitor_context_iter (struct janitor_context *, void **,
-                               janitor_free_t **);
+JANITOR_FUNC unsigned janitor_context_iter (struct janitor_context *, void **,
+                                            janitor_free_t **);
 /**
  * Schedules the given context to be cleaned at the end of the function.
  */
-void janitor_clean (struct janitor_context *);
+JANITOR_FUNC void janitor_clean (struct janitor_context *);
