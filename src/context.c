@@ -51,11 +51,14 @@ janitor_context_add (struct janitor_context *ctx, void *ptr,
   ctx->count += 1;
 }
 
-void
+unsigned
 janitor_context_iter (struct janitor_context *ctx, void **ptr,
                       janitor_free_t **free)
 {
   assert (ctx != NULL);
+
+  if (ctx->count == 0)
+    return 0;
 
   struct janitor_item *item = &ctx->items[ctx->count - 1];
 
@@ -68,8 +71,8 @@ janitor_context_iter (struct janitor_context *ctx, void **ptr,
   struct janitor_item *items = reallocarray (ctx->items, ctx->count - 1,
                                              sizeof (struct janitor_item));
 
-  if (items != NULL)
+  if (ctx->count > 1 && items != NULL)
     ctx->items = items;
 
-  ctx->count -= 1;
+  return ctx->count--;
 }

@@ -36,8 +36,8 @@ void janitor_context_add (struct janitor_context *, void *, janitor_free_t *);
  * Get the last thing to free in the Janitor context, removing it from the
  * context.
  */
-void janitor_context_iter (struct janitor_context *, void **,
-                           janitor_free_t **);
+unsigned janitor_context_iter (struct janitor_context *, void **,
+                               janitor_free_t **);
 /**
  * Schedules the given context to be cleaned at the end of the function.
  */
